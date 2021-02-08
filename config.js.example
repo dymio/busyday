@@ -1,0 +1,8 @@
+const busydayActivities = {
+  work: 'Working',
+  order: 'Ordering',
+  learn: 'Leanrning',
+  health: 'Improving health',
+  family: 'Family time',
+  rest: 'Resting'
+};

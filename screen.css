@@ -1,0 +1,386 @@
+/*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,footer,header,nav,section{display:block}h1{font-size:2em;margin:.67em 0}figcaption,figure,main{display:block}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent;-webkit-text-decoration-skip:objects}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}dfn{font-style:italic}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}audio,video{display:inline-block}audio:not([controls]){display:none;height:0}img{border-style:none}svg:not(:root){overflow:hidden}button,input,optgroup,select,textarea{font-family:sans-serif;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{display:inline-block;vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details,menu{display:block}summary{display:list-item}canvas{display:inline-block}template{display:none}[hidden]{display:none}
+
+/*! Print styles taken from Bootstrap v3.3.7 | MIT License | getbootstrap.com */@media print{*,:after,:before{color:#000!important;text-shadow:none!important;background:0 0!important;-webkit-box-shadow:none!important;box-shadow:none!important}a,a:visited{text-decoration:underline}a[href]:after{content:" (" attr(href) ")"}abbr[title]:after{content:" (" attr(title) ")"}a[href^="#"]:after,a[href^="javascript:"]:after{content:""}blockquote,pre{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}img,tr{page-break-inside:avoid}img{max-width:100%!important}h2,h3,p{orphans:3;widows:3}h2,h3{page-break-after:avoid}table{border-collapse:collapse!important}table td,table th{background-color:#fff!important}}
+
+/*!
+ * Screen base styles (include form base styles)
+ *  based on Bootstrap v3.3.7 | MIT License | getbootstrap.com
+ */
+
+html {
+  font-size: 10px;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #000;
+  background-color: #fff;
+}
+
+a {
+  color: #337ab7;
+  text-decoration: none;
+}
+a:hover,
+a:focus {
+  color: #23527c;
+  text-decoration: underline;
+}
+a:focus {
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+/* Think underline variant for inline-block link:
+    display: inline-block;
+    border-bottom: 1px solid;
+    line-height: 90%; */
+/* Thin underline variant for inline with 1 square px image:
+    background: url('one_px_428bca.png') repeat-x left 1.26em; */
+
+figure {
+  margin: 0;
+}
+img {
+  vertical-align: middle;
+}
+[role="button"] {
+  cursor: pointer;
+}
+
+@-ms-viewport { width: device-width; }
+
+input, button, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+fieldset {
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+legend {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 20px;
+  font-size: 21px;
+  line-height: inherit;
+  color: #333;
+  border: 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+input[type="search"] {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-appearance: none;
+}
+input[type="radio"],
+input[type="checkbox"] {
+  margin: 4px 0 0;
+  margin-top: 1px \9;
+  line-height: normal;
+}
+input[type="file"] {
+  display: block;
+}
+input[type="range"] {
+  display: block;
+  width: 100%;
+}
+select[multiple],
+select[size] {
+  height: auto;
+}
+input[type="file"]:focus,
+input[type="radio"]:focus,
+input[type="checkbox"]:focus {
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+output {
+  display: block;
+  padding-top: 7px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+}
+input[type="radio"][disabled],
+input[type="checkbox"][disabled],
+fieldset[disabled] input[type="radio"],
+fieldset[disabled] input[type="checkbox"] {
+  cursor: not-allowed;
+}
+
+/*!
+ * Content styles
+ *  based on Bootstrap v3.3.7 | MIT License | getbootstrap.com
+ */
+
+.content img { max-width: 100%; }
+
+.content hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+
+.content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit; }
+.content h1, .content h2, .content h3 {
+  margin-top: 20px;
+  margin-bottom: 10px; }
+.content h4, .content h5, .content h6 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.content h1 small, .content h2 small, .content h3 small,
+.content h4 small, .content h5 small, .content h6 small {
+  font-weight: normal;
+  line-height: 1;
+  color: #777; }
+.content h1 small, .content h2 small, .content h3 small { font-size: 65%; }
+.content h4 small, .content h5 small, .content h6 small { font-size: 75%; }
+
+.content h1 { font-size: 36px; }
+.content h2 { font-size: 30px; }
+.content h3 { font-size: 24px; }
+.content h4 { font-size: 18px; }
+.content h5 { font-size: 14px; }
+.content h6 { font-size: 12px; }
+
+.content p { margin: 0 0 10px; }
+
+.content small { font-size: 85%; }
+
+.content mark {
+  padding: .2em;
+  background-color: #fcf8e3;
+}
+
+.content ul, .content ol {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+.content ul ul, .content ol ul,
+.content ul ol, .content ol ol {
+  margin-bottom: 0; }
+
+.content dl {
+  margin-top: 0;
+  margin-bottom: 20px; }
+.content dt, .content dd { line-height: 1.42857143; }
+.content dt { font-weight: bold; }
+.content dd { margin-left: 0; }
+
+.content abbr[title], .content abbr[data-original-title] {
+  cursor: help;
+  border-bottom: 1px dotted #777;
+}
+
+.content blockquote {
+  padding: 10px 20px;
+  margin: 0 0 20px;
+  font-size: 17.5px;
+  border-left: 5px solid #eee; }
+.content blockquote p:last-child,
+.content blockquote ul:last-child,
+.content blockquote ol:last-child {
+  margin-bottom: 0; }
+.content blockquote footer,
+.content blockquote small {
+  display: block;
+  font-size: 80%;
+  line-height: 1.42857143;
+  color: #777; }
+.content blockquote footer:before,
+.content blockquote small:before {
+  content: '\2014 \00A0'; }
+
+.content address {
+  margin-bottom: 20px;
+  font-style: normal;
+  line-height: 1.42857143;
+}
+
+.content code, .content kbd, .content pre, .content samp {
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace; }
+.content code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px; }
+.content kbd {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #fff;
+  background-color: #333;
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .25);
+          box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .25); }
+.content kbd kbd {
+  padding: 0;
+  font-size: 100%;
+  font-weight: bold;
+  -webkit-box-shadow: none;
+          box-shadow: none; }
+.content pre {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  color: #333;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px; }
+.content pre code {
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+  white-space: pre-wrap;
+  background-color: transparent;
+  border-radius: 0; }
+
+.content table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+  background-color: transparent;
+}
+.content caption {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  color: #777;
+  text-align: left;
+}
+.content th {
+  text-align: left;
+}
+.content table > thead > tr > th,
+.content table > tbody > tr > th,
+.content table > tfoot > tr > th,
+.content table > thead > tr > td,
+.content table > tbody > tr > td,
+.content table > tfoot > tr > td {
+  padding: 8px;
+  line-height: 1.42857143;
+  vertical-align: top;
+  border-top: 1px solid #ddd; }
+.content table > thead > tr > th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #ddd;
+}
+.content table > caption + thead > tr:first-child > th,
+.content table > colgroup + thead > tr:first-child > th,
+.content table > thead:first-child > tr:first-child > th,
+.content table > caption + thead > tr:first-child > td,
+.content table > colgroup + thead > tr:first-child > td,
+.content table > thead:first-child > tr:first-child > td {
+  border-top: 0;
+}
+.content table > tbody + tbody {
+  border-top: 2px solid #ddd;
+}
+.content table table {
+  background-color: #fff;
+}
+
+/* Clearfix hack */
+.clearfix:before,
+.clearfix:after { display: table; content: " "; }
+.clearfix:after { clear: both; }
+
+/* The holder */
+.holder {
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 20px;
+  padding-left: 20px;
+  max-width: 460px;
+}
+
+/* Responsive media rules from Bootstrap 3:
+    Default is EXTRA SMALL - less than 768px
+    @media (min-width: 768px) {} SMALL
+    @media (min-width: 992px) {} MEDIUM
+    @media (min-width: 1200px) {} LARGE */
+/* Responsive media rules from Bootstrap 2:
+    @media (min-width: 1200px) { } Large desktop
+    Default is width from 980px to 1999px
+    @media (min-width: 768px) and (max-width: 979px) { } Portrait tablet to landscape and desktop
+    @media (max-width: 767px) { } Landscape phone to portrait tablet
+    @media (max-width: 480px) { } Landscape phones and down */
+
+.main-header {
+  position: relative;
+}
+.main-header .flush-btn {
+  display: block;
+  position: absolute;
+  top: 2px; right: 2px;
+  border: 0;
+  outline: none;
+  padding: 2px 6px;
+  background: #696969;
+  color: #fff;
+  font-size: 10px;
+  cursor: pointer;
+}
+.main-header .flush-btn:hover {
+  background-color: #000;
+}
+
+.main-header h1 {
+  font-size: 16px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.busyness-holder {
+  margin: 10px 0;
+}
+
+.busyness-button {
+  position: relative;
+  display: block;
+  margin: 0;
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 6px 18px;
+  width: 100%;
+  outline: none;
+  cursor: pointer;
+  background: #fff;
+  text-align: left;
+}
+
+.busyness-button.active {
+  background-color: #0c822f;
+  color: #fff;
+}
+
+.busyness-button .informer {
+  display: block;
+  position: absolute;
+  top: 4px; right: 8px;
+  font-size: 10px;
+}
