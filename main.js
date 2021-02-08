@@ -145,7 +145,6 @@ function saveToStorage() {
 
 function tryToRestoreFromStorage() {
   const savedTimersString = localStorage.getItem('busyday');
-  console.log('savedTimersString', savedTimersString);
   if (!savedTimersString) return;
   let savedTimers = {};
   try {
