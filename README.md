@@ -1,11 +1,13 @@
 Busy day
 ========
 
-Busy day — a simple application to track basic daily activities in easy way.
+Busy day — a simple application to track time of basic daily activities in easy way.
 
 Set a collection of activities and have an ability to track it with one click.
 Between sessions data will be stored in local storage of your browser.
 You will not find any saved data if you open the app from another browser.
+
+[Demo page](http://static.dymio.net/busyday/demo/)
 
 
 Technical requirements
