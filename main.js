@@ -93,16 +93,16 @@ function updateInformer(activityName) {
     }
     else {
       const psdSec = parseInt(timerSum / 1000);
-      passedInfo = (psdSec % 60).toString();
+      passedInfo = (psdSec % 60).toString().padStart(2, '0');
       if (psdSec > 60) {
         const psdMin = parseInt(psdSec / 60);
-        passedInfo = (psdMin % 60).toString() + ':' + passedInfo;
+        passedInfo = (psdMin % 60).toString().padStart(2, '0') + ':' + passedInfo;
         if (psdMin > 60) {
           passedInfo = parseInt(psdMin / 60).toString() + ':' + passedInfo;
         }
       }
       else {
-        passedInfo = '0:' + passedInfo;
+        passedInfo = '00:' + passedInfo;
       }
     }
   }
