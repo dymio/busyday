@@ -50,10 +50,11 @@ function buttonClick(evnt) {
 
   if (isTimerActive(activityName)) {
     stopTimer(activityName);
-  }
-  else {
+    clearBadge();
+  } else {
     for (const key in timers) if (isTimerActive(key)) stopTimer(key);
     runTimer(activityName);
+    lighBadge();
   }
 }
 
@@ -81,7 +82,7 @@ function runTimer(activityName, btnElement) {
 function refreshTimerSum(activityName) {
   timerSums[activityName] = timers[activityName].reduce((sum, curTimer) => {
     return sum + (curTimer.length === 2 ? curTimer[1] - curTimer[0] : 0);
-  }, 0)
+  }, 0);
 }
 
 function updateInformer(activityName) {
@@ -90,8 +91,7 @@ function updateInformer(activityName) {
   if (timerSum > 0) {
     if (timerSum < 1000) {
       passedInfo = '< 1 sec';
-    }
-    else {
+    } else {
       const psdSec = parseInt(timerSum / 1000);
       passedInfo = (psdSec % 60).toString().padStart(2, '0');
       if (psdSec > 60) {
@@ -100,8 +100,7 @@ function updateInformer(activityName) {
         if (psdMin > 60) {
           passedInfo = parseInt(psdMin / 60).toString() + ':' + passedInfo;
         }
-      }
-      else {
+      } else {
         passedInfo = '00:' + passedInfo;
       }
     }
@@ -115,9 +114,7 @@ function updateInformer(activityName) {
     runInfo = `from ${runDate.getHours()}:${minStr}`;
   }
 
-  timerInfos[activityName].textContent = passedInfo
-    + (passedInfo && runInfo ? ' + ' : '')
-    + runInfo;
+  timerInfos[activityName].textContent = passedInfo + (passedInfo && runInfo ? ' + ' : '') + runInfo;
 }
 
 function flushTimers() {
@@ -128,11 +125,12 @@ function flushTimers() {
     timerInfos[key].textContent = '';
     localStorage.removeItem('busyday');
   }
+  clearBadge();
 }
 
 function isTimerActive(activityName) {
   const theLastTimer = getTheLastTimerOf(activityName);
-  return (theLastTimer && theLastTimer.length === 1);
+  return theLastTimer && theLastTimer.length === 1;
 }
 
 function getTheLastTimerOf(activityName) {
@@ -149,8 +147,7 @@ function tryToRestoreFromStorage() {
   let savedTimers = {};
   try {
     savedTimers = JSON.parse(savedTimersString);
-  }
-  catch (err) {
+  } catch (err) {
     console.warn('Problem with parsing timers from the storage. Flush or fix.');
     return;
   }
@@ -159,5 +156,21 @@ function tryToRestoreFromStorage() {
     refreshTimerSum(key);
     updateInformer(key);
     timerButtons[key].className = btnClassName + (isTimerActive(key) ? ` ${btnActiveClassName}` : '');
+  }
+}
+
+function lighBadge() {
+  if ('setAppBadge' in navigator) {
+    navigator.setAppBadge(1).catch((error) => {
+      console.error('Failed to set badge:', error);
+    });
+  }
+}
+
+function clearBadge() {
+  if ('clearAppBadge' in navigator) {
+    navigator.clearAppBadge().catch((error) => {
+      console.error('Failed to clear badge:', error);
+    });
   }
 }
