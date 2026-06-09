@@ -390,3 +390,9 @@ fieldset[disabled] input[type="checkbox"] {
   top: 4px; right: 8px;
   font-size: 10px;
 }
+
+.busyness-total {
+  display: block;
+  text-align: right;
+  font-size: 10px;
+}

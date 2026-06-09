@@ -9,6 +9,7 @@ const timers = {};
 const timerSums = {};
 const timerButtons = {};
 const timerInfos = {};
+let timerTotal = null;
 
 document.body.onload = init;
 
@@ -40,6 +41,14 @@ function init() {
     container.appendChild(activityBlock);
   }
 
+  const totalBlock = document.createElement('div');
+  totalBlock.className = 'busyness-holder';
+  const totalInformer = document.createElement('span');
+  totalInformer.className = 'busyness-total';
+  timerTotal = totalInformer;
+  totalBlock.appendChild(totalInformer);
+  container.appendChild(totalBlock);
+
   document.getElementById('timers-flusher').addEventListener('click', flushTimers);
 
   tryToRestoreFromStorage();
@@ -56,6 +65,9 @@ function buttonClick(evnt) {
     runTimer(activityName);
     lighBadge();
   }
+
+  updateTotal();
+  saveToStorage();
 }
 
 function stopTimer(activityName) {
@@ -65,7 +77,6 @@ function stopTimer(activityName) {
     timerButtons[activityName].className = btnClassName;
     refreshTimerSum(activityName);
     updateInformer(activityName);
-    saveToStorage();
   }
 }
 
@@ -75,7 +86,6 @@ function runTimer(activityName, btnElement) {
     timers[activityName].push([new Date().getTime()]);
     timerButtons[activityName].className = `${btnClassName} ${btnActiveClassName}`;
     updateInformer(activityName);
-    saveToStorage();
   }
 }
 
@@ -86,26 +96,8 @@ function refreshTimerSum(activityName) {
 }
 
 function updateInformer(activityName) {
-  let passedInfo = '';
   const timerSum = timerSums[activityName];
-  if (timerSum > 0) {
-    if (timerSum < 1000) {
-      passedInfo = '< 1 sec';
-    } else {
-      const psdSec = parseInt(timerSum / 1000);
-      passedInfo = (psdSec % 60).toString().padStart(2, '0');
-      if (psdSec > 60) {
-        const psdMin = parseInt(psdSec / 60);
-        passedInfo = (psdMin % 60).toString().padStart(2, '0') + ':' + passedInfo;
-        if (psdMin > 60) {
-          passedInfo = parseInt(psdMin / 60).toString() + ':' + passedInfo;
-        }
-      } else {
-        passedInfo = '00:' + passedInfo;
-      }
-    }
-  }
-
+  const passedInfo = stringifyTime(timerSum);
   let runInfo = '';
   if (isTimerActive(activityName)) {
     const runDate = new Date(getTheLastTimerOf(activityName)[0]);
@@ -117,15 +109,27 @@ function updateInformer(activityName) {
   timerInfos[activityName].textContent = passedInfo + (passedInfo && runInfo ? ' + ' : '') + runInfo;
 }
 
+function updateTotal() {
+  const totalSum = Object.keys(timerSums).reduce((acc, cur) => acc + timerSums[cur], 0);
+  if (totalSum > 0) {
+    timerTotal.textContent = '= ' + stringifyTime(totalSum) + (isAnyTimerActive() ? '...' : '');
+  }
+}
+
 function flushTimers() {
   for (const key in busydayActivities) {
     timers[key] = [];
-    timerSums[key] = [];
+    timerSums[key] = 0;
     timerButtons[key].className = btnClassName;
     timerInfos[key].textContent = '';
-    localStorage.removeItem('busyday');
   }
+  localStorage.removeItem('busyday');
+  timerTotal.textContent = '';
   clearBadge();
+}
+
+function getTheLastTimerOf(activityName) {
+  return timers[activityName][timers[activityName].length - 1];
 }
 
 function isTimerActive(activityName) {
@@ -133,8 +137,31 @@ function isTimerActive(activityName) {
   return theLastTimer && theLastTimer.length === 1;
 }
 
-function getTheLastTimerOf(activityName) {
-  return timers[activityName][timers[activityName].length - 1];
+function isAnyTimerActive() {
+  for (const key in timers) if (isTimerActive(key)) return true;
+  return false;
+}
+
+function stringifyTime(mseconds) {
+  let stringified = '';
+  if (mseconds > 0) {
+    if (mseconds < 1000) {
+      stringified = '< 1 sec';
+    } else {
+      const psdSec = parseInt(mseconds / 1000);
+      stringified = (psdSec % 60).toString().padStart(2, '0');
+      if (psdSec > 60) {
+        const psdMin = parseInt(psdSec / 60);
+        stringified = (psdMin % 60).toString().padStart(2, '0') + ':' + stringified;
+        if (psdMin > 60) {
+          stringified = parseInt(psdMin / 60).toString() + ':' + stringified;
+        }
+      } else {
+        stringified = '00:' + stringified;
+      }
+    }
+  }
+  return stringified;
 }
 
 function saveToStorage() {
@@ -157,6 +184,8 @@ function tryToRestoreFromStorage() {
     updateInformer(key);
     timerButtons[key].className = btnClassName + (isTimerActive(key) ? ` ${btnActiveClassName}` : '');
   }
+  updateTotal();
+  isAnyTimerActive() && lighBadge();
 }
 
 function lighBadge() {
