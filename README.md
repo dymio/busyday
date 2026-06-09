@@ -21,5 +21,7 @@ Installation
 
 Copy `config.js.example` file to `config.js` and update it according to your needs.
 
-After it you already can try the application by opening `index.html` in your browser.
-But the right way to do it — publish this page on the web.
+Serve the directory as the root of a web application.
+
+Or just try the application by opening `index-local.html` file in your browser.
+But be aware that this approach makes unable to use this application as a PWA.
