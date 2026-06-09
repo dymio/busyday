@@ -5,14 +5,10 @@
   Developer: Ivan Dymkov
   Contact: mstrdymio [at] gmail.com
   Site: dymio.net
-  Site: codenohito.ru
   Twitter: @dymio
-  From: Krasnoyarsk, Russia
 
 /* THANKS */
   Lovely wife: Maria Dymkova
-  Twitter: @o_mafka
-  From: Krasnoyarsk, Russia
 
 
                      __....+-488888"`488888888oo...___
