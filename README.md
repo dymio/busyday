@@ -7,7 +7,7 @@ Set a collection of activities and have an ability to track it with one click.
 Between sessions data will be stored in local storage of your browser.
 You will not find any saved data if you open the app from another browser.
 
-[Demo page](http://static.dymio.net/busyday/demo/)
+[Demo page](https://busy.dymio.net)
 
 
 Technical requirements
