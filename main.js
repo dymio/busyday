@@ -51,6 +51,18 @@ function init() {
 
   document.getElementById('timers-flusher').addEventListener('click', flushTimers);
 
+  checkRequirementToAskNotificationPermission().then(
+    (answ) => {
+      const askBlock = document.createElement('div');
+      const askBtn = document.createElement('button');
+      askBtn.textContent = 'request permissions for showing a badge';
+      askBtn.onclick = () => Notification.requestPermission();
+      askBlock.appendChild(askBtn);
+      container.appendChild(askBlock);
+    },
+    () => null,
+  );
+
   tryToRestoreFromStorage();
 }
 
@@ -201,5 +213,19 @@ function clearBadge() {
     navigator.clearAppBadge().catch((error) => {
       console.error('Failed to clear badge:', error);
     });
+  }
+}
+
+function checkRequirementToAskNotificationPermission() {
+  if ('setAppBadge' in navigator && 'permissions' in navigator && 'Notification' in window) {
+    return navigator.permissions.query({ name: 'notifications' }).then((result) => {
+      if (result.state !== 'granted' && result.state !== 'denied') {
+        return true;
+      } else {
+        throw new Error('nah');
+      }
+    });
+  } else {
+    return Promise.reject('nah');
   }
 }
