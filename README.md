@@ -7,6 +7,8 @@ Set a collection of activities and have an ability to track it with one click.
 Between sessions data will be stored in local storage of your browser.
 You will not find any saved data if you open the app from another browser.
 
+You also can install this application as a [progressive web app](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/What_is_a_progressive_web_app) right from the demo page.
+
 [Demo page](https://busy.dymio.net)
 
 
